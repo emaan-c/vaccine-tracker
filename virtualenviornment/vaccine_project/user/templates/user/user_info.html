@@ -1,0 +1,17 @@
+{% extends "user/base.html" %}
+{% block content %}
+
+<article class="media content-section">
+    <div class="media-body">
+    <h2 class="article-title">Fill Out The Following Information</h2>
+    <h4 class="article-title">Find the nearst vaccine to you!</h4>
+    <p class="article-content">
+        <form action="{% url 'user-info' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+        </form>      
+    </p>
+    </div>
+</article>
+{% endblock content %} 

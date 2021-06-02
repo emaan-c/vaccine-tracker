@@ -1,0 +1,64 @@
+{% extends "user/base.html" %}
+{% block content %}
+<div>
+    <h5><a class="nav-item nav-link" href="{% url 'listpharmacy' %}">Back</a></h5>
+</div>
+
+<article class="media content-section">
+    <div class="media-body">
+    <h2 class="article-title">{{ object.pharmacy }}</h2>
+    <p>{{ object.address }}<br>{{ object.city }}, ON<br>{{ object.postal_code }}<br><a href="{{ object.mapaddress }}">Open In Google Maps!</a></p>
+
+
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+          height: 400px;
+          /* The height is 400 pixels */
+          width: 100%;
+          /* The width is the width of the web page */
+        }
+      </style>
+      <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+          const uluru = { lat: {{ object.latitude }}, lng: {{ object.longitude }} };
+          // The map, centered at Uluru
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 16,
+            center: uluru,
+          });
+          // The marker, positioned at Uluru
+          const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+          });
+        }
+      </script>
+    </head>
+    <body>
+      <!--The div element for the map -->
+      <div id="map"></div>
+  
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI6ZaBTGySLLCb9m5Mdr5MLR0wSo2BGHU&callback=initMap">
+        </script>
+
+    <p><a href="{% url 'direction2' object.id %}"><br>Need Directions?</a></p>
+    <h4 class="article-title">Vaccine:</h4>
+    <p>{{ object.vaccine1 }}</p>
+    <h4 class="article-title">Appointment Details:</h4>
+    <p>{{ object.appointment_details }}}</p>
+    <h4 class="article-title">Hours:</h4>
+    <p>{{ object.hours1 }}<br>{{ object.hours2 }}<br>{{ object.hours3 }}</p>
+    <h4 class="article-title">Phone Number:</h4>
+    <p>{{ object.phone }}</p>
+    <h4 class="article-title">Website:</h4>
+    <p><a href="{{ object.website }}">Click Here!</a></p>
+    </div>
+</article>
+
+
+{% endblock content %} 

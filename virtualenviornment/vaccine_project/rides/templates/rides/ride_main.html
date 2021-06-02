@@ -1,0 +1,20 @@
+{% extends "user/base.html" %}
+{% block content %}
+
+<h4 class="article-title">Need a Ride to the Vaccine Clinic?</h4>
+    <p>There are many institutions that are offering free rides to those who cannot drive to their vaccine appointment in any other way possible. Please feel free to click <a href="https://www.circleofcare.com/vaccinerides/">here</a> for more information!. Otherwise if you would like to order an uber, you can fill out the form below to get you your ride ASAP!<br<br>></dv></p> 
+<article class="media content-section">
+    <div class="media-body">
+    <h2 class="article-title">Fill Out The Following Information</h2>
+    <h4 class="article-title">Find the nearst vaccine to you!</h4>
+    <p class="article-content">
+        <form action="{% url 'ride-main' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+        </form>      
+    </p>
+    </div>
+</article> 
+    
+{% endblock content %} 

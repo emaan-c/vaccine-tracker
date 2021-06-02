@@ -1,0 +1,73 @@
+{% extends "user/base.html" %}
+{% block content %}
+{% for item in js %}
+    {% if item.age < '18' %}
+        <div>
+            <h5><a class="nav-item nav-link" href="{% url 'home' %}">Back</a></h5>
+        </div>
+        <article class="media content-section">
+            <div class="media-body">
+            <h4 class="article-title">Unfortunately the vaccine is only being administered to individuals 18 and over. Please click <a href="{% url 'home' %}">here</a> to return back to the main page!</h4>
+            </div>
+        </article>
+    {% else %}
+        {% if item.location == 'Toronto' %}
+            {% for object in qs %}
+
+            <article class="media content-section">
+                <div class="media-body">
+                <h2 class="article-title">{{ object.pharmacy }}</h2>
+                <p>{{ object.distance_from_user }} km Away<br><a href="{% url 'listpharmacy-detail' object.id %}">Click Here for More Details!</a></p>
+                </div>
+            </article>
+
+            {% endfor %}
+
+        {% elif item.location == 'Hamilton' %}
+            {% for object in qs %}
+
+            <article class="media content-section">
+                <div class="media-body">
+                <h2 class="article-title">{{ object.pharmacy }}</h2>
+                <p>{{ object.distance_from_user }} km Away<br><a href="{% url 'listpharmacy-detail2' object.id %}">Click Here for More Details!</a></p>
+                </div>
+            </article>
+
+            {% endfor %}
+        {% elif item.location == 'Mississauga' %}
+            {% for object in qs %}
+
+            <article class="media content-section">
+                <div class="media-body">
+                <h2 class="article-title">{{ object.pharmacy }}</h2>
+                <p>{{ object.distance_from_user }} km Away<br><a href="{% url 'listpharmacy-detail3' object.id %}">Click Here for More Details!</a></p>
+                </div>
+            </article>
+
+            {% endfor %}
+        {% elif item.location == 'Brampton' %}
+            {% for object in qs %}
+
+            <article class="media content-section">
+                <div class="media-body">
+                <h2 class="article-title">{{ object.pharmacy }}</h2>
+                <p>{{ object.distance_from_user }} km Away<br><a href="{% url 'listpharmacy-detail4' object.id %}">Click Here for More Details!</a></p>
+                </div>
+            </article>
+
+            {% endfor %}
+        {% elif item.location == 'Ottawa' %}
+            {% for object in qs %}
+
+            <article class="media content-section">
+                <div class="media-body">
+                <h2 class="article-title">{{ object.pharmacy }}</h2>
+                <p>{{ object.distance_from_user }} km Away<br><a href="{% url 'listpharmacy-detail5' object.id %}">Click Here for More Details!</a></p>
+                </div>
+            </article>
+
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% endblock content %}
